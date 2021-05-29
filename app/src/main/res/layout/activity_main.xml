@@ -27,6 +27,7 @@
         app:itemBackground="@drawable/border_item_black"
         app:itemIconTint="@color/color_black"
         app:itemTextColor="@color/color_black"
-        app:menu="@menu/nav_menu" />
+        app:menu="@menu/nav_menu"
+        />
 
 </androidx.drawerlayout.widget.DrawerLayout>
