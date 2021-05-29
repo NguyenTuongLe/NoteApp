@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/AppTheme.GrayBackground"
+    android:background="#FAEBD7"
     android:padding="@dimen/dp_40"
+    android:theme="@style/AppTheme.GrayBackground"
     android:weightSum="2">
 
     <TextView
@@ -12,9 +13,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
+        android:background="#FAEBD7"
         android:fontFamily="@font/great_vibes"
         android:gravity="center"
         android:text="@string/nav_header_name"
+        android:textColor="@color/cardview_dark_background"
         android:textSize="@dimen/sp_25"
         android:textStyle="bold" />
 
@@ -23,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
+        android:background="#FAEBD7"
         android:src="@drawable/ic_app_note"
         tools:ignore="ContentDescription" />
 

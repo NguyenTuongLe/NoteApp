@@ -34,4 +34,5 @@
     <color name="color_highlight">#DEDEDE</color>
     <color name="color_selected">#F7E4F7</color>
     <color name="color_toolbar_selector">#F4BB18</color>
+    <color name="color_blue_dark">#0E1F55</color>
 </resources>
