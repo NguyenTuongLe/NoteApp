@@ -12,11 +12,6 @@
                 android:title="@string/option_menu_item_color"
                 app:showAsAction="ifRoom" />
             <item
-                android:id="@+id/option_item_label"
-                android:icon="@drawable/ic_label"
-                android:title="@string/option_menu_item_label"
-                app:showAsAction="ifRoom" />
-            <item
                 android:id="@+id/option_item_sort"
                 android:icon="@drawable/ic_sort"
                 android:title="@string/option_menu_item_sort"

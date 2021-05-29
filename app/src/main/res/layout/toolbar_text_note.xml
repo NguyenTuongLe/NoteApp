@@ -40,8 +40,7 @@
                 android:inputType="textLongMessage"
                 android:maxWidth="@dimen/dp_200"
                 android:minWidth="@dimen/dp_200"
-                android:padding="@dimen/dp_1"
-                tools:ignore="LabelFor" />
+                android:padding="@dimen/dp_1" />
 
         </LinearLayout>
 

@@ -1,6 +1,5 @@
 package com.sun.noteapp.data.model
 
-import android.content.ContentValues
 import android.database.Cursor
 import android.os.Parcelable
 import com.sun.noteapp.data.source.local.NoteDatabase
@@ -13,7 +12,6 @@ data class Note(
     val content: String,
     val type: Int,
     val color: Int,
-    val label: String,
     val modifyTime: String,
     val remindTime: String,
     val password: String,
@@ -25,7 +23,6 @@ data class Note(
         cursor.getString(cursor.getColumnIndex(NoteDatabase.NOTE_CONTENT)),
         cursor.getInt(cursor.getColumnIndex(NoteDatabase.NOTE_TYPE)),
         cursor.getInt(cursor.getColumnIndex(NoteDatabase.NOTE_COLOR)),
-        cursor.getString(cursor.getColumnIndex(NoteDatabase.NOTE_LABEL)),
         cursor.getString(cursor.getColumnIndex(NoteDatabase.NOTE_MODIFYTIME)),
         cursor.getString(cursor.getColumnIndex(NoteDatabase.NOTE_REMINDTIME)),
         cursor.getString(cursor.getColumnIndex(NoteDatabase.NOTE_PASSWORD)),

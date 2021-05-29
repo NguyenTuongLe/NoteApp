@@ -49,13 +49,6 @@ class LocalDataSource(private val database: NoteDatabase) : NoteDataSource.Local
         }, callback).execute(option)
     }
 
-    override fun getAllLabels(callback: OnDataModifiedCallback<List<String>>) {
-        LoadDataAsync(object : LocalDataHandler<String, List<String>> {
-            override fun execute(params: String): List<String> =
-                database.getAllLabelDataString()
-        }, callback).execute("")
-    }
-
     override fun getAllHidedNotes(sortType: String, callback: OnDataModifiedCallback<List<Note>>) {
         LoadDataAsync(object : LocalDataHandler<String, List<Note>> {
             override fun execute(params: String): List<Note> =

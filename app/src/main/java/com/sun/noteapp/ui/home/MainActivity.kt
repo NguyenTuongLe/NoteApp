@@ -34,7 +34,6 @@ import com.sun.noteapp.ui.home.dialog.SortDialog
 import com.sun.noteapp.ui.home.dialog.ViewDialog
 import com.sun.noteapp.ui.search.SearchActivity
 import com.sun.noteapp.ui.textnote.TextNoteActivity
-import com.sun.noteapp.ui.todonote.SetLabelDialog
 import com.sun.noteapp.ui.todonote.ToDoNoteActivity
 import com.sun.noteapp.ui.trash.TrashActivity
 import com.sun.noteapp.utils.*
@@ -72,11 +71,8 @@ class MainActivity : AppCompatActivity(),
         LinearLayoutManager.VERTICAL
     )
 
-    private var selectedLabels = mutableListOf<String>()
-    private var allLabels = mutableListOf<String>()
     private var option = NoteOption(
         NoteDatabase.DEFAULT_COLOR,
-        selectedLabels,
         NoteDatabase.ORDERBY_CREATETIME,
         false
     )
@@ -196,13 +192,11 @@ class MainActivity : AppCompatActivity(),
         super.onResume()
         option = NoteOption(
             SharePreferencesHelper.color,
-            selectedLabels,
             SharePreferencesHelper.sortType,
             SharePreferencesHelper.isRemind
         )
         presenter.getNoteCount()
         presenter.getAllNotesWithOption(option)
-        presenter.getAllLabels()
     }
 
     override fun showAllNotes(notes: List<Note>) {
@@ -278,11 +272,6 @@ class MainActivity : AppCompatActivity(),
         transformationMethod = PasswordTransformationMethod.getInstance()
     }
 
-    override fun gettedLabels(labels: List<String>) {
-        allLabels.clear()
-        allLabels.addAll(labels)
-    }
-
     override fun onBackPressed() {
         if (drawerNavigate.isDrawerOpen(GravityCompat.START)) {
             drawerNavigate.closeDrawer(GravityCompat.START)
@@ -327,10 +316,6 @@ class MainActivity : AppCompatActivity(),
             showViewDialog()
             true
         }
-        R.id.option_item_label -> {
-            showLabelDialog()
-            true
-        }
         R.id.option_item_search -> {
             startActivity(SearchActivity.getIntent(this))
             true
@@ -356,29 +341,6 @@ class MainActivity : AppCompatActivity(),
                 SharePreferencesHelper.type = params
             }
         }).show()
-    }
-
-    private fun showLabelDialog() {
-        SetLabelDialog(
-            this,
-            allLabels,
-            selectedLabels,
-            true,
-            getString(R.string.button_ok),
-            object : SetLabelDialog.HandleAddLabelDialogEvent {
-                override fun getSelectedLabels(selectedLabels: List<String>) {
-                    this@MainActivity.selectedLabels.apply {
-                        clear()
-                        addAll(selectedLabels)
-                        presenter.getAllNotesWithOption(option)
-                    }
-                }
-
-                override fun addLabel() {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-            }
-        ).show()
     }
 
     private fun showSortDialog() {

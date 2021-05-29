@@ -1,8 +1,6 @@
 package com.sun.noteapp.utils
 
 const val EMPTY = ""
-const val LABEL_PADDING = 10
-const val LAST_LABEL_WIDTH = 180
 const val WHITE_COLOR = 9
 const val SWIPE_RTL = 4
 const val TYPE_TEXT_NOTE = 1

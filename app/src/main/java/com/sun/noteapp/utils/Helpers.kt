@@ -71,13 +71,3 @@ fun String.allIndexOf(word: String): List<Int> {
     }
     return results
 }
-
-fun getLabelsFromLabelDataString(labelDataStrings: List<String>): List<String> {
-    val results = mutableListOf<String>()
-    labelDataStrings.forEach {
-        val labels = it.split("$UNDER_STROKE")
-        results.addAll(labels)
-    }
-    results.sort()
-    return results.distinct()
-}

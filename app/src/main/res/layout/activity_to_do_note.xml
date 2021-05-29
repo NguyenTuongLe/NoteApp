@@ -19,7 +19,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@id/buttonAlarmToDoNote"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAlarmToDoNote"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,37 +64,10 @@
         android:fontFamily="sans-serif"
         android:padding="@dimen/dp_15"
         android:textAlignment="textStart"
-        app:layout_constraintBottom_toTopOf="@id/horizontalScrollLabel"
+        app:layout_constraintBottom_toTopOf="@+id/toolbarBottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nestedScrollView" />
-
-    <LinearLayout
-        android:id="@+id/horizontalScrollLabel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/toolbarBottom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonAlarmToDoNote">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/dp_15"
-            android:src="@drawable/ic_label"
-            tools:ignore="ContentDescription" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerToDoNoteLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal"
-            android:padding="@dimen/dp_10"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-    </LinearLayout>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarBottom"
@@ -106,7 +79,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/horizontalScrollLabel"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <ImageView

@@ -15,8 +15,6 @@ interface NoteDataSource {
 
         fun getNotesWithOption(option: NoteOption, callback: OnDataModifiedCallback<List<Note>>)
 
-        fun getAllLabels(callback: OnDataModifiedCallback<List<String>>)
-
         fun getAllHidedNotes(sortType: String, callback: OnDataModifiedCallback<List<Note>>)
 
         fun deleteNotes(

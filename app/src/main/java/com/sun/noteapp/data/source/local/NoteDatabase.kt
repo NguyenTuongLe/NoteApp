@@ -24,7 +24,6 @@ class NoteDatabase(context: Context) :
         put(NOTE_TITLE, note.title)
         put(NOTE_CONTENT, note.content)
         put(NOTE_TYPE, note.type)
-        put(NOTE_LABEL, note.label)
         put(NOTE_COLOR, note.color)
         put(NOTE_MODIFYTIME, note.modifyTime)
         put(NOTE_REMINDTIME, note.remindTime)
@@ -88,28 +87,6 @@ class NoteDatabase(context: Context) :
         return notes
     }
 
-    fun getAllLabelDataString(): List<String> {
-        val result = mutableListOf<String>()
-        val db = readableDatabase
-        val cursor = db.query(
-            TABLE_NOTE,
-            arrayOf(NOTE_LABEL),
-            null,
-            null,
-            null,
-            null,
-            null
-        )
-        if (cursor.moveToFirst()) {
-            do {
-                result.add(cursor.getString(cursor.getColumnIndex(NOTE_LABEL)))
-            } while (cursor.moveToNext())
-        }
-        db.close()
-        cursor.close()
-        return result
-    }
-
     fun getNotesWithOption(option: NoteOption): List<Note> {
         val notes = mutableListOf<Note>()
         val db = readableDatabase
@@ -120,13 +97,6 @@ class NoteDatabase(context: Context) :
         if (option.color != DEFAULT_COLOR) {
             selection += "AND $NOTE_COLOR = ? "
             selectionArgs.add("${option.color}")
-        }
-
-        if (option.labels.isNotEmpty()) {
-            option.labels.forEach {
-                selection += "AND $NOTE_LABEL LIKE ? "
-                selectionArgs.add("%$it%")
-            }
         }
 
         if (option.isOnlyRemind) {
@@ -189,7 +159,7 @@ class NoteDatabase(context: Context) :
         noteIds.map { restoreNote(it) }
 
     fun getNoteById(id: Int): Note {
-        var note = Note(id, Note.NONE, Note.NONE, TYPE_TEXT_NOTE, DEFAULT_COLOR, Note.NONE, Note.NONE, Note.NONE, Note.NONE, UNHIDE)
+        var note = Note(id, Note.NONE, Note.NONE, TYPE_TEXT_NOTE, DEFAULT_COLOR, Note.NONE, Note.NONE, Note.NONE, UNHIDE)
         val db = readableDatabase
         val cursor = db.query(
             TABLE_NOTE,
@@ -233,7 +203,6 @@ class NoteDatabase(context: Context) :
         const val NOTE_ID = "Note_id"
         const val NOTE_TITLE = "Note_title"
         const val NOTE_CONTENT = "Note_content"
-        const val NOTE_LABEL = "Note_label"
         const val NOTE_COLOR = "Note_color"
         const val NOTE_MODIFYTIME = "Note_modify"
         const val NOTE_REMINDTIME = "Note_remind"
@@ -254,8 +223,7 @@ class NoteDatabase(context: Context) :
             """create table $TABLE_NOTE ( 
                     $NOTE_ID INTEGER PRIMARY KEY AUTOINCREMENT, 
                     $NOTE_TITLE TEXT, 
-                    $NOTE_CONTENT TEXT, 
-                    $NOTE_LABEL TEXT, 
+                    $NOTE_CONTENT TEXT,
                     $NOTE_TYPE INTEGER, 
                     $NOTE_COLOR INTEGER DEFAULT 0,
                     $NOTE_MODIFYTIME TEXT,

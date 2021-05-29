@@ -90,61 +90,12 @@ class SearchAdapter(
                     if (text == Note.NONE) gone() else visible()
                 }
 
-                layoutLabelNoteVerticalWide.apply {
-                    removeAllViewsInLayout()
-                    addLabelTextView(context, itemData.label, layoutLabelNoteVerticalWide)
-                    if (itemData.label == Note.NONE) gone() else visible()
-                }
-
                 if (itemData.password != Note.NONE) {
                     iconLockNoteVerticalWide.visible()
-                    layoutLabelNoteVerticalWide.gone()
                     textContentNoteVerticalWide.text = EMPTY
                 } else {
                     iconLockNoteVerticalWide.gone()
                 }
-            }
-        }
-
-        @SuppressLint("SetTextI18n")
-        private fun addLabelTextView(
-            context: Context,
-            labelStringData: String,
-            labelLayout: LinearLayout
-        ) {
-            val labels = ConvertString.labelStringDataToLabelList(labelStringData)
-            var layoutLabelWidth = 0
-            for (i in labels.indices) {
-                val textLabel = TextView(context)
-                textLabel.text = labels[i]
-                setUpLabelTextView(textLabel)
-                layoutLabelWidth += textLabel.measuredWidth + LABEL_PADDING
-                if (layoutLabelWidth > maxWidthItem - LAST_LABEL_WIDTH) {
-                    if (layoutLabelWidth < maxWidthItem && i == labels.size - 1) {
-                        labelLayout.addView(textLabel)
-                    } else {
-                        textLabel.text = "${labels.size - i}+"
-                        labelLayout.addView(textLabel)
-                    }
-                    break
-                }
-                labelLayout.addView(textLabel)
-            }
-        }
-
-        private fun setUpLabelTextView(textLabel: TextView) {
-            val params = LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-            params.setMargins(5, 0, 5, 0)
-            textLabel.apply {
-                layoutParams = params
-                setBackgroundResource(R.drawable.custom_label)
-                measure(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
             }
         }
 

@@ -13,11 +13,6 @@
                 android:title="@string/option_menu_item_delete"
                 app:showAsAction="ifRoom" />
             <item
-                android:id="@+id/bottomMenuSetLabel"
-                android:icon="@drawable/ic_label"
-                android:title="@string/menu_item_label"
-                app:showAsAction="ifRoom" />
-            <item
                 android:id="@+id/bottomMenuLock"
                 android:icon="@drawable/ic_lock_black_24dp"
                 android:title="@string/option_menu_lock"

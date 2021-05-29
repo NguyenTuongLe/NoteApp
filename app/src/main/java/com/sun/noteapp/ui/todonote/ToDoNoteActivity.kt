@@ -47,10 +47,7 @@ class ToDoNoteActivity : AppCompatActivity(),
         TextNotePresenter(this, repository)
     }
     private val toDoAdapter = ToDoAdapter(this)
-    private val labelAdapter = LabelAdapter()
     private val date = Calendar.getInstance()
-    private var allLabels = mutableListOf<String>()
-    private var selectedLabels = mutableListOf<String>()
     private var remindTime = Note.NONE
     private var noteId = 0
     private var noteStatus = NoteDatabase.UNHIDE
@@ -76,7 +73,6 @@ class ToDoNoteActivity : AppCompatActivity(),
         toolbarBottom.inflateMenu(R.menu.bottom_option_menu)
         handleEventClick()
         setUpEventMoveToDo()
-        presenter.getAllLabels()
     }
 
     private fun handleEventClick() {
@@ -87,11 +83,9 @@ class ToDoNoteActivity : AppCompatActivity(),
         buttonAlarmToDoNote.setOnClickListener(this)
         imageButtonBottomSaveToDoNote.setOnClickListener(this)
         textAddItem.setOnClickListener(this)
-        horizontalScrollLabel.setOnClickListener(this)
     }
 
     private fun setUpRecycler() {
-        recyclerToDoNoteLabel.adapter = labelAdapter
         val deviderItemDecoration = DividerItemDecoration(this, LinearLayoutManager.VERTICAL)
         recyclerToDo.apply {
             addItemDecoration(deviderItemDecoration)
@@ -99,13 +93,11 @@ class ToDoNoteActivity : AppCompatActivity(),
         }
         if (noteId == 0) {
             toDoAdapter.submitList(toDos)
-            labelAdapter.submitList(selectedLabels)
         }
     }
 
     override fun initData(note: Note) {
         initTopBar(note.title, note.color)
-        initContent(note.content, note.remindTime, note.label)
         initBottomBar(note.password, note.modifyTime)
         updateView(noteColor)
     }
@@ -118,7 +110,7 @@ class ToDoNoteActivity : AppCompatActivity(),
         noteColor = color
     }
 
-    private fun initContent(content: String, remindTime: String, label: String) {
+    private fun initContent(content: String, remindTime: String) {
         if (remindTime != Note.NONE) {
             date.time = remindTime.formatDate()
             buttonAlarmToDoNote.text = remindTime
@@ -129,8 +121,6 @@ class ToDoNoteActivity : AppCompatActivity(),
             }
         }
         this.remindTime = remindTime
-        if (label != Note.NONE) selectedLabels.addAll(ConvertString.labelStringDataToLabelList(label))
-        labelAdapter.submitList(selectedLabels)
         toDos.addAll(ConvertString.convertToDoDataStringToList(content))
         toDoAdapter.submitList(toDos)
     }
@@ -178,10 +168,6 @@ class ToDoNoteActivity : AppCompatActivity(),
         }
         R.id.bottomMenuDeleteRemind -> {
             if (buttonAlarmToDoNote.text.isNotEmpty()) showDeleteAlarmDialog()
-            true
-        }
-        R.id.bottomMenuSetLabel -> {
-            showSetLabelDialog()
             true
         }
         R.id.bottomMenuUnlock -> showUnlockDialog()
@@ -250,7 +236,6 @@ class ToDoNoteActivity : AppCompatActivity(),
         imageButtonHeaderColorTextNote.setBackgroundResource(mediumColor)
         toolbarTitle.setBackgroundResource(mediumColor)
         layoutContent.setBackgroundResource(lightColor)
-        horizontalScrollLabel.setBackgroundResource(mediumColor)
         buttonAlarmToDoNote.setBackgroundResource(mediumColor)
         toolbarBottom.setBackgroundResource(mediumColor)
     }
@@ -268,29 +253,6 @@ class ToDoNoteActivity : AppCompatActivity(),
         ).show()
     }
 
-    private fun showSetLabelDialog() {
-        SetLabelDialog(
-            this,
-            allLabels,
-            selectedLabels,
-            false,
-            null,
-            object : SetLabelDialog.HandleAddLabelDialogEvent {
-                override fun getSelectedLabels(selectedLabels: List<String>) {
-                    this@ToDoNoteActivity.selectedLabels.apply {
-                        clear()
-                        addAll(selectedLabels)
-                        labelAdapter.notifyDataSetChanged()
-                    }
-                }
-
-                override fun addLabel() {
-                    showAddLabelDialog()
-                }
-            }
-        ).show()
-    }
-
     private fun showTimePickerDialog() {
         TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { _, hourOfDay, minutes ->
             date.set(Calendar.HOUR_OF_DAY, hourOfDay)
@@ -304,28 +266,11 @@ class ToDoNoteActivity : AppCompatActivity(),
         }, date.get(Calendar.HOUR_OF_DAY), date.get(Calendar.MINUTE), true).show()
     }
 
-    private fun showAddLabelDialog() {
-        InputTextDialog(
-            this,
-            getString(R.string.button_new_label),
-            null,
-            false,
-            object : InputTextDialog.HandleInputTextDialogEvent {
-                override fun getInputString(text: String) {
-                    allLabels.add(text)
-                    selectedLabels.add(text)
-                    labelAdapter.notifyDataSetChanged()
-                }
-            }
-        ).show()
-    }
-
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.imageButtonHeaderColorTextNote -> showImageColorDialog()
             R.id.buttonAlarmToDoNote -> showDateTimePickerDialog()
             R.id.textAddItem -> showAddToDoDialog()
-            R.id.horizontalScrollLabel -> showSetLabelDialog()
             R.id.imageButtonBottomSaveToDoNote -> {
                 if (editTitleTextNote.text.isEmpty()) {
                     showToast(getString(R.string.message_error_save))
@@ -343,7 +288,6 @@ class ToDoNoteActivity : AppCompatActivity(),
             ConvertString.convertToDoListToDataString(toDos),
             TODO_NOTE,
             noteColor,
-            ConvertString.labelListToLabelStringData(selectedLabels),
             getCurrentTime(),
             remindTime,
             notePassword,
@@ -430,10 +374,6 @@ class ToDoNoteActivity : AppCompatActivity(),
 
     override fun onDragIconMove(holder: ToDoAdapter.ViewHolder) {
         itemTouchHelper?.startDrag(holder)
-    }
-
-    override fun gotLabels(labels: List<String>) {
-        allLabels.addAll(labels)
     }
 
     override fun backToListNote() {

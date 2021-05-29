@@ -35,10 +35,6 @@ class NoteLocalRepository(private val dataSource: LocalDataSource) : NoteDataSou
         dataSource.getNotesWithOption(option, callback)
     }
 
-    override fun getAllLabels(callback: OnDataModifiedCallback<List<String>>) {
-        dataSource.getAllLabels(callback)
-    }
-
     override fun getAllHidedNotes(sortType: String, callback: OnDataModifiedCallback<List<Note>>) {
         dataSource.getAllHidedNotes(sortType, callback)
     }

@@ -42,19 +42,4 @@ object ConvertString {
         return result
     }
 
-    fun labelListToLabelStringData(strings: List<String>): String {
-        var result = ""
-        val stringBuilder = StringBuilder()
-        if (strings.isNotEmpty()) {
-            strings.forEach {
-                stringBuilder.append("$UNDER_STROKE$it")
-            }
-            result = stringBuilder.substring(1).toString()
-        }
-        return result
-    }
-
-    fun labelStringDataToLabelList(string: String): List<String> =
-        string.split("$UNDER_STROKE")
-
 }
