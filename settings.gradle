@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "ToDoAlarm"
+rootProject.name='NoteApp'
