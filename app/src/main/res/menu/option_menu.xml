@@ -8,7 +8,7 @@
         <menu>
             <item
                 android:id="@+id/option_item_color"
-                android:icon="@drawable/ic_color"
+                android:icon="@drawable/ic_colour"
                 android:title="@string/option_menu_item_color"
                 app:showAsAction="ifRoom" />
             <item
@@ -25,6 +25,10 @@
                 android:id="@+id/option_item_search"
                 android:icon="@drawable/ic_search"
                 android:title="@string/option_menu_item_search" />
+            <item
+                android:id="@+id/option_item_about"
+                android:icon="@drawable/ic_more_vert"
+                android:title="@string/option_menu_item_about" />
         </menu>
     </item>
 
