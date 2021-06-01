@@ -27,6 +27,7 @@ import com.sun.noteapp.data.model.NoteOption
 import com.sun.noteapp.data.repository.NoteLocalRepository
 import com.sun.noteapp.data.source.local.LocalDataSource
 import com.sun.noteapp.data.source.local.NoteDatabase
+import com.sun.noteapp.ui.about.AboutActivity
 import com.sun.noteapp.ui.base.BaseDialog
 import com.sun.noteapp.ui.home.dialog.ColorDialog
 import com.sun.noteapp.ui.home.dialog.CreateNoteDialog
@@ -318,6 +319,10 @@ class MainActivity : AppCompatActivity(),
         }
         R.id.option_item_search -> {
             startActivity(SearchActivity.getIntent(this))
+            true
+        }
+        R.id.option_item_about -> {
+            startActivity(AboutActivity.getIntent(this))
             true
         }
         else -> false
