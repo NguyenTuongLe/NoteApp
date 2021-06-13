@@ -10,11 +10,11 @@ Note App là một ứng dụng dùng để ghi chú và hẹn lịch làm việ
 
 ## Màn hình chính và các menu
 
-<h1><img src="./image/main.png" alt="main" width="200px" height="400px"></h1>
+<h1><img src="./image/main.png" alt="main" width="250px" height="400px"></h1>
 
-<h1><img src="./image/main_menu_left.png" alt="main" width="200px" height="400px"></h1>
+<h1><img src="./image/main_menu_left.png" alt="main" width="250px" height="400px"></h1>
 
-<h1><img src="./image/main_menu_right.png" alt="main" width="200px" height="400px"></h1>
+<h1><img src="./image/main_menu_right.png" alt="main" width="250px" height="400px"></h1>
 
 
 
