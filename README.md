@@ -70,10 +70,61 @@ Note App là một ứng dụng dùng để ghi chú và hẹn lịch làm việ
 	<img src="./image/search2.png" alt="search" width="250px" height="400px">	
 </div>
 
-## Các ghi chú có set thời gian
+## Thông báo khi tới lịch
+
+<div>
+	<img src="./image/alarm.png" alt="alarm" width="250px" height="400px">	
+</div>
+
+## Tắt thông báo
+
+<div>
+	<img src="./image/alarm_off_1.png" alt="alarm_off" width="250px" height="400px">
+	<img src="./image/alarm_off_2.png" alt="alarm_off" width="250px" height="400px">
+	<img src="./image/alarm_off_3.png" alt="alarm_off" width="250px" height="400px">
+	<img src="./image/alarm_off_4.png" alt="alarm_off" width="250px" height="400px">	
+</div>
+
+## Khóa ghi chú 
+
+<div>
+	<img src="./image/lock1.png" alt="lock" width="250px" height="400px">	
+	<img src="./image/lock2.png" alt="lock" width="250px" height="400px">	
+	<img src="./image/lock3.png" alt="lock" width="250px" height="400px">	
+	<img src="./image/lock4.png" alt="lock" width="250px" height="400px">	
+	<img src="./image/lock5.png" alt="lock" width="250px" height="400px">	
+</div>
+
+## Các note có set thời gian
 
 <div>
 	<img src="./image/remind.png" alt="remind" width="250px" height="400px">	
+</div>
+
+## Xóa note
+
+<div>
+	<img src="./image/delete1.png" alt="delete" width="250px" height="400px">
+	<img src="./image/delete2.png" alt="delete" width="250px" height="400px">
+	<img src="./image/delete3.png" alt="delete" width="250px" height="400px">	
+</div>
+
+## Thùng rác
+
+<div>
+	<img src="./image/trash1.png" alt="trash" width="250px" height="400px">	
+	<img src="./image/trash2.png" alt="trash" width="250px" height="400px">
+	<img src="./image/trash3.png" alt="trash" width="250px" height="400px">
+	<img src="./image/trash4.png" alt="trash" width="250px" height="400px">
+	<img src="./image/trash5.png" alt="trash" width="250px" height="400px">
+	<img src="./image/trash6.png" alt="trash" width="250px" height="400px">
+	<img src="./image/trash7.png" alt="trash" width="250px" height="400px">
+</div>
+
+## Info nhóm
+
+<div>
+	<img src="./image/about.png" alt="about" width="250px" height="400px">	
 </div>
 
 
