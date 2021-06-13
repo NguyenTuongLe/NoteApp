@@ -98,6 +98,7 @@ class ToDoNoteActivity : AppCompatActivity(),
 
     override fun initData(note: Note) {
         initTopBar(note.title, note.color)
+        initContent(note.content, note.remindTime)
         initBottomBar(note.password, note.modifyTime)
         updateView(noteColor)
     }
@@ -243,7 +244,7 @@ class ToDoNoteActivity : AppCompatActivity(),
     private fun showDateTimePickerDialog() {
         DatePickerDialog(
             this,
-            DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+            { _, year, monthOfYear, dayOfMonth ->
                 date.set(year, monthOfYear, dayOfMonth)
                 showTimePickerDialog()
             },
@@ -254,7 +255,7 @@ class ToDoNoteActivity : AppCompatActivity(),
     }
 
     private fun showTimePickerDialog() {
-        TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { _, hourOfDay, minutes ->
+        TimePickerDialog(this, { _, hourOfDay, minutes ->
             date.set(Calendar.HOUR_OF_DAY, hourOfDay)
             date.set(Calendar.MINUTE, minutes)
             buttonAlarmToDoNote.text = simpleDateFormat.format(date.time)
